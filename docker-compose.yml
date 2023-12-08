@@ -1,0 +1,56 @@
+version: "3.7"
+
+services:
+#    workspace:
+#        image: ${DOCKER_IMAGE}
+#        build:
+#            dockerfile: ./docker/workspace/Dockerfile
+#            context: ./
+#        ports:
+#            - "8080:8080"
+    app:
+        image: ${DOCKER_IMAGE}
+        build: .
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.75"
+                    memory: 512M
+                reservations:
+                    cpus: "0.25"
+                    memory: 128M
+        tty: true
+        env_file:
+            - ./.env
+        volumes:
+            - ./:/app
+#        depends_on:
+#            - mysql
+        links:
+            - mysql
+        networks:
+            - paper-network
+        ports:
+            - "8080:8080"
+    mysql:
+        image: mysql:5.7
+        container_name: mysql
+        restart: unless-stopped
+        env_file:
+            - ./.env
+        environment:
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_USER: ${MYSQL_USER}
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        ports:
+            - "3307:3306"
+        volumes:
+            - ./volume/mysql:/docker-entrypoint-initdb.d
+        networks:
+            - paper-network
+networks:
+    paper-network:
+        driver: bridge

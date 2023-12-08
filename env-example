@@ -1,0 +1,19 @@
+APP_NAME=papper-disbursement
+
+##########################################################
+# MYSQL
+##########################################################
+MYSQL_HOST=mysql
+#MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_DATABASE=paper-db
+MYSQL_ROOT_PASSWORD=paper
+MYSQL_PASSWORD=paper
+MYSQL_USER=paper
+SERVICE_TAGS=local
+SERVICE_NAME=mysql
+
+##########################################################
+# DOCKER
+##########################################################
+DOCKER_IMAGE=paper/workspace:stable
