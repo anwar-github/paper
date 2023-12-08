@@ -33,6 +33,7 @@ services:
         ports:
             - "8080:8080"
     mysql:
+        platform: linux/amd64 # Uncomment this line if you are using Apple Silicone Chip
         image: mysql:5.7
         container_name: mysql
         restart: unless-stopped
