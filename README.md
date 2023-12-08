@@ -20,23 +20,26 @@ Install Docker https://docs.docker.com/engine/install
 
 ```bash
   docker -v
-  # Docker version 24.0.2
-  docker build -t referral:latest . 
+  # Docker version 24.0.6
+  docker-compose -v
+  # Docker Compose version v2.21.0-desktop.1
+  
 ```
-
+Workspace Repository:
+https://hub.docker.com/r/anwarmuhammad/paper/tags
 
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://nobi-gitlab.usenobi.com/nobi-corp/referral.git
+  git clone https://github.com/anwar-github/paper.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd referral
+  cd papper
 ```
 
 rename env-example
@@ -45,35 +48,19 @@ rename env-example
   cp env-example .env
 ```
 
-Install dependencies
+Start the server
 
 ```bash
-  go mod tidy
-```
-
-Start the server with build
-
-```bash
-  go run referral
-```
-
-Start the server with file main
-
-```bash
-  go run main.go
+  docker-compose up -d mysql
+  # run app, port 8080
+  docker-compose up -d app
 ```
 
 
-## Documentation
+## Api Definition
+https://xkq7ys6pfk.apidog.io/
 
-[ED Documentation](https://linktodocumentation)
-[API Documentation](https://linktodocumentation)
-## Tech Stack
-
-**Client:** Swagger
-
-**Server:** Go, Fiber, Gorm
 ## Authors
 
-- [@platform](developer@usenobi.com)
+- [Muhammad Anwar](myproject182@gmail.com)
 

@@ -8,7 +8,7 @@ services:
 #            context: ./
 #        ports:
 #            - "8080:8080"
-    development:
+    app:
         image: ${DOCKER_IMAGE}
         build: .
         deploy:

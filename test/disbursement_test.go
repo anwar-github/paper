@@ -53,6 +53,27 @@ var (
 )
 
 func TestDisbursementService(t *testing.T) {
+	t.Run("WALLET VALIDATION - NOT FOUND", func(t *testing.T) {
+		// Call your function for test
+		err := services.WalletValidation(nil, 1000)
+
+		// Assert a result as expectations
+		assert.Equal(t, err, errors.New(exception.InsufficientBalance))
+	})
+	t.Run("WALLET VALIDATION - INSUFFICIENT", func(t *testing.T) {
+		// Call your function for test
+		err := services.WalletValidation(mockWallet, 5000)
+
+		// Assert a result as expectations
+		assert.Equal(t, err, errors.New(exception.InsufficientBalance))
+	})
+	t.Run("WALLET VALIDATION - SUFFICIENT", func(t *testing.T) {
+		// Call your function for test
+		err := services.WalletValidation(mockWallet, 1)
+
+		// Assert a result as expectations
+		assert.Equal(t, err, nil)
+	})
 	t.Run("INSUFFICIENT BALANCE", func(t *testing.T) {
 		// Set the expected behavior for the mock
 		mockRepository.On("FindDisbursementByRequestID", mock.AnythingOfType("*sql.Tx"), mock.AnythingOfType("string")).Return(nil, nil).Once()
