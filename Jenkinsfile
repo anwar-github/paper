@@ -1,22 +1,19 @@
 pipeline {
-    agent {
-        label "golang"
-    }
-
+    agent any
     stages {
         stage("Build") {
             steps {
-                echo "Hello Build"
+                echo "Step Build"
             }
         }
         stage("Test") {
             steps {
-                echo "Hello Test"
+                echo "Step Test"
             }
         }
         stage("Deploy") {
              steps {
-                 echo "Hello Deploy"
+                 echo "Step Deploy"
              }
         }
     }
